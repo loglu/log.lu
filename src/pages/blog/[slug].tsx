@@ -26,7 +26,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
       remarkPlugins: [],
       rehypePlugins: []
     },
-    scope: data
+    scope: data as any as Record<string, unknown>
   });
 
   return {

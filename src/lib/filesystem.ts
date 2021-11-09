@@ -10,7 +10,7 @@ export const PAGE_PATH = path.join(process.cwd(), '_source/page');
 export const postFilePaths = fs.readdirSync(POST_PATH).filter((path) => /\.mdx?$/.test(path));
 export const pageFilePaths = fs.readdirSync(PAGE_PATH).filter((path) => /\.mdx?$/.test(path));
 
-function getMDXContent(filePath: string) {
+function getMDXContent(filePath: string): iPost {
   const source = fs.readFileSync(filePath);
   const { data, content } = matter(source, {
     engines: {
@@ -22,7 +22,7 @@ function getMDXContent(filePath: string) {
     ...data,
     slug,
     content
-  };
+  } as any as iPost;
 }
 
 export function getPost(filePath: string): iPost {
